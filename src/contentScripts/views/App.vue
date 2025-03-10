@@ -1,13 +1,21 @@
 <script setup lang="ts">
 import 'uno.css'
-import logo from '~/assets/logo.png'
+import npmTrends from '~/assets/npm_trends.png'
+import npmgraph from '~/assets/npmgraph.png'
+import npmstat from '~/assets/npmstat.png'
+import socket from '~/assets/socket.png'
 
 const packName = ref('')
 
-const activityHref = computed(() => {
+const hrefGroup = computed(() => {
   if (!packName.value)
-    return ''
-  return `https://npm-stat.com/charts.html?package=${packName.value}`
+    return {}
+  return {
+    npmStat: `https://npm-stat.com/charts.html?package=${packName.value}`,
+    npmtrends: `https://npmtrends.com/${packName.value}`,
+    socket: `https://socket.dev/npm/package/${packName.value}`,
+    npmgraph: `https://npmgraph.js.org/?q=${packName.value}`,
+  }
 })
 
 function updatePackName() {
@@ -27,21 +35,53 @@ updatePackName()
 </script>
 
 <template>
-  <span v-if="packName">
+  <div v-if="packName" class="stat-flex stat-flex-wrap stat-w-full stat-justify-between">
     <a
-      class="stat-btn br2 pv2 ph3 fw5 f5 tc button button-reset pointer ma2 truncate ml0 no-underline mt2 dib w-100"
-      :href="activityHref"
+      class="stat-btn stat-w-[48%]"
+      :href="hrefGroup.npmStat"
       target="_blank"
     >
-      <img :src="logo" alt="logo" class="stat-w-[20px] stat-h-[20px] stat-align-middle"> npm-stat.com
+      <img :src="npmstat" alt="logo" class="stat-w-[20px] stat-h-[20px] stat-align-middle stat-mr-1">npm-stat.com
     </a>
-  </span>
+    <a
+      class="stat-btn stat-w-[48%]"
+      :href="hrefGroup.npmtrends"
+      target="_blank"
+    >
+      <img :src="npmTrends" alt="logo" class="stat-w-[20px] stat-h-[20px] stat-align-middle stat-mr-1">npm trends
+    </a>
+    <a
+      class="stat-btn stat-w-[48%]"
+      :href="hrefGroup.socket"
+      target="_blank"
+    >
+      <img :src="socket" alt="logo" class="stat-w-[20px] stat-h-[20px] stat-align-middle stat-mr-1">socket
+    </a>
+    <a
+      class="stat-btn stat-w-[48%]"
+      :href="hrefGroup.npmgraph"
+      target="_blank"
+    >
+      <img :src="npmgraph" alt="logo" class="stat-w-[20px] stat-h-[20px] stat-align-middle stat-mr-1">npmgraph
+    </a>
+  </div>
 </template>
 
 <style>
 .stat-btn {
   background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0.13) 0%, rgba(0, 184, 15, 0.1) 100%);
   border: 1px solid rgba(75, 173, 58, 0.5);
+  text-align: center;
+  margin: .5rem 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  font-weight: 500;
+  display: inline-block;
+  border-radius: .25rem;
+  font-size: 1rem;
+  text-decoration: none;
 }
 .stat-btn:hover {
   background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0.18) 0%, rgba(0, 184, 15, 0.14) 100%);

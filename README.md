@@ -1,5 +1,7 @@
 # npm-stat-webext
 
+Service from [npm-stat.com](https://github.com/pvorb/npm-stat.com)
+
 ## Install
 
 - [Chrome Web Store](https://chromewebstore.google.com/detail/)

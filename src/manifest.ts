@@ -26,12 +26,8 @@ export async function getManifest() {
       48: './assets/icon-512.png',
       128: './assets/icon-512.png',
     },
-    permissions: [
-      'tabs',
-      'storage',
-      'activeTab',
-    ],
-    host_permissions: ['*://*/*'],
+    permissions: [],
+    host_permissions: ['https://www.npmjs.com/*'],
     content_scripts: [
       {
         matches: [

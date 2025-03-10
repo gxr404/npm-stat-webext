@@ -1,11 +1,6 @@
 import { useWebExtensionStorage } from '~/composables/useWebExtensionStorage'
 
-interface GithubActivityConfig {
-  isCustomService: boolean
-  customService: string
-}
-
-function getDefaultConfig(): GithubActivityConfig {
+function getDefaultConfig() {
   return {
     isCustomService: false,
     customService: '',
